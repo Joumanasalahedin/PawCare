@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetCare</title>
+</head>
+
+<body>
+    <h1>Welcome to PetCare</h1>
+    <p>Find the best vets near you and book appointments easily!</p>
+
+    <h2>List of Vets:</h2>
+    <ul>
+        {% for vet in vets %}
+        <li>
+            <strong>{{ vet.first_name }} {{ vet.last_name }}</strong><br>
+            Location: {{ vet.street }}, {{ vet.city }} {{ vet.PLZ }}<br>
+            Phone: {{ vet.phone_number }}<br>
+            Email: {{ vet.email }}<br>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+
+</html>
