@@ -4,24 +4,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PetCare</title>
+    <title>Pawcare</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <!-- <script src="{% static 'js/scriptcookie.js' %}"></script> -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
 </head>
 
-<body>
-    <h1>Welcome to PetCare</h1>
-    <p>Find the best vets near you and book appointments easily!</p>
+<body class="fadeIn">
+    <header>
+        <section>
+            <div class="video">
+                <video autoplay loop muted>
+                    {% get_media_prefix as MEDIA_URL %}
+                    <source src="{{ MEDIA_URL }}videos/bgv.mp4" type="video/mp4">
+                </video>
+            </div>
+        </section>
+        <h1 id="head">Pawcare</h1>
+        <nav>
+            <a href="login.html">Login</a>
+            <a href="register.html">Register</a>
+        </nav>
+    </header>
 
-    <h2>List of Vets:</h2>
-    <ul>
-        {% for vet in vets %}
-        <li>
-            <strong>{{ vet.first_name }} {{ vet.last_name }}</strong><br>
-            Location: {{ vet.street }}, {{ vet.city }} {{ vet.PLZ }}<br>
-            Phone: {{ vet.phone_number }}<br>
-            Email: {{ vet.email }}<br>
-        </li>
-        {% endfor %}
-    </ul>
+    <legend>Search Veterinarians Near You</legend>
+
+    <div class="s01">
+        <form>
+            <div class="inner-form">
+                <div class="input-field first-wrap">
+                    <input id="search" type="text" placeholder="Name, Institution, Clinic.">
+                </div>
+                <div class="input-field second-wrap">
+                    <input id="location" type="text" placeholder="Location">
+                </div>
+                <div class="input-field third-wrap">
+                    <button class="btn-search" type="button">Search</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="cta-container">
+        <p>Are You a Veterinarian? We've made it easier for you too!</p>
+        <a href="dd.html" class="cta-button">Get Started with Pawcare</a>
+    </div>
+
+    <footer id="aboutus">
+        &copy; 2024. Pawcare All rights reserved.
+    </footer>
+
+    <button class="scroll-to-top" onclick="scrollToTop()">Scroll to Top</button>
+
+    <script>
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
 </body>
 
 </html>
