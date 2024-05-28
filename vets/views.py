@@ -1,7 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import Vet
 
 
-def home(request):
-    vets = Vet.objects.all()
-    return render(request, 'home.html', {'vets': vets})
+def doctor_dashboard(request):
+    return render(request, 'doctor_dashboard.html')

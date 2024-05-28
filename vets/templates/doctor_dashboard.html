@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor's Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/doctor_dashboard.css' %}">
+</head>
+
+<body>
+
+    <header>
+        <h1>Doctor's Dashboard</h1>
+        <i class="fas fa-user profile-icon"></i>
+    </header>
+
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">Patients</a>
+        <a href="#">Appointments</a>
+    </nav>
+
+    <div class="dashboard-container">
+        <div class="patient-form">
+            <h2>Add Patient Information</h2>
+            <form id="patientForm">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="address">Address:</label>
+                <input type="text" id="address" name="address" required>
+
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age" required>
+
+                <label for="medicalHistory">Medical History:</label>
+                <textarea id="medicalHistory" name="medicalHistory"></textarea>
+
+                <label for="birthdate">Birthdate:</label>
+                <input type="date" id="birthdate" name="birthdate" required>
+
+                <label for="insuranceNumber">Insurance Number:</label>
+                <input type="text" id="insuranceNumber" name="insuranceNumber" required>
+
+                <label for="registrationDate">Date of Registration:</label>
+                <input type="date" id="registrationDate" name="registrationDate" required>
+
+                <label for="contactNumber">Contact Number:</label>
+                <input type="tel" id="contactNumber" name="contactNumber" required>
+
+                <label for="emergencyContact">Emergency Contact:</label>
+                <input type="tel" id="emergencyContact" name="emergencyContact" required>
+
+                <label for="medications">Medications:</label>
+                <textarea id="medications" name="medications"></textarea>
+
+                <button type="button" onclick="submitForm()">Add Patient</button>
+            </form>
+        </div>
+
+        <div class="statistics-section">
+            <h2>Statistics</h2>
+            <div class="statistics-item">
+                <span>Total Patients:</span>
+                <span id="totalPatients">0</span>
+            </div>
+            <div class="statistics-item">
+                <span>Appointments Today:</span>
+                <span id="appointmentsToday">0</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function submitForm() {
+            // Here you can implement logic to handle the form submission
+            alert('Form submitted!'); // Replace this with actual form submission code
+        }
+
+        // Your profile icon click event or navigation logic goes here
+        document.querySelector('.profile-icon').addEventListener('click', function () {
+            alert('My Profile Clicked');
+            // You can navigate to the profile page or show a profile modal here
+        });
+    </script>
+</body>
+
+</html>
