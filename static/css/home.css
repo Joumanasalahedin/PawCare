@@ -86,6 +86,7 @@ nav a:hover {
 }
 
 html {
+    line-height: ;
     /* 1 */
     -ms-text-size-adjust: 100%;
     /* 2 */
@@ -528,6 +529,7 @@ fieldset {
 }
 
 legend {
+    margin: ;
     padding: 0;
     display: block;
     -webkit-padding-start: 0;

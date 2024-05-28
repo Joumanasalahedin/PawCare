@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Pawcare</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/register.css' %}">
+    <!-- <link rel="stylesheet" href="fonts/linearicons/style.css"> -->
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a href="{% url 'home' %}">Home</a>
+            <a href="{% url 'login' %}">Login</a>
+        </nav>
+    </header>
+
+    <div class="wrapper">
+        <div class="inner">
+            <img src="{% static 'images/girl.png' %}" alt="" class="girl">
+            <form action="">
+                <h3>New Account?</h3>
+                <div class="form-holder">
+                    <span class="lnr lnr-user"></span>
+                    <input type="text" class="form-control" placeholder="Username">
+                </div>
+                <div class="form-holder">
+                    <span class="lnr lnr-phone-handset"></span>
+                    <input type="text" class="form-control" placeholder="Phone Number">
+                </div>
+                <div class="form-holder">
+                    <span class="lnr lnr-envelope"></span>
+                    <input type="text" class="form-control" placeholder="Mail">
+                </div>
+                <div class="form-holder">
+                    <span class="lnr lnr-lock"></span>
+                    <input type="password" class="form-control" placeholder="Password">
+                </div>
+                <div class="form-holder">
+                    <span class="lnr lnr-lock"></span>
+                    <input type="password" class="form-control" placeholder="Confirm Password">
+                </div>
+                <button>
+                    <span>Register</span>
+                </button>
+            </form>
+            <img src="{% static 'images/plant.png' %}" alt="" class="plant">
+        </div>
+
+    </div>
+
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <!-- <script src="{% static 'js/main.js' %}"></script> -->
+</body>
+
+</html>

@@ -4,13 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Pawcare</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <!-- <script src="{% static 'js/scriptcookie.js' %}"></script> -->
     <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
-    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
 </head>
 
 <body class="fadeIn">
@@ -50,7 +52,7 @@
 
     <div class="cta-container">
         <p>Are You a Veterinarian? We've made it easier for you too!</p>
-        <a href="#" class="cta-button">Get Started with Pawcare</a>
+        <a href="{% url 'doc_register_login'%}" class="cta-button">Get Started with Pawcare</a>
     </div>
 
     <!-- Example to check link to db
