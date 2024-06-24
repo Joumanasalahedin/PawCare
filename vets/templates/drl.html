@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!-- Coding By CodingNepal - codingnepalweb.com -->
 <html lang="en">
 
 <head>
@@ -15,10 +14,22 @@
     <section class="wrapper">
         <div class="form signup">
             <header>Signup</header>
-            <form action="#">
-                <input type="text" placeholder="Full name" required />
-                <input type="text" placeholder="Email address" required />
-                <input type="password" placeholder="Password" required />
+            <form method="post" action="{% url 'vets:register' %}">
+                {% csrf_token %}
+                {{ form.username.errors }}
+                <input type="text" name="username" placeholder="Email address" required
+                    value="{{ form.username.value|default_if_none:'' }}" />
+
+                {{ form.name.errors }}
+                <input type="text" name="name" placeholder="Full name" required
+                    value="{{ form.name.value|default_if_none:'' }}" />
+
+                {{ form.password1.errors }}
+                <input type="password" name="password1" placeholder="Password" required />
+
+                {{ form.password2.errors }}
+                <input type="password" name="password2" placeholder="Confirm Password" required />
+
                 <div class="checkbox">
                     <input type="checkbox" id="signupCheck" />
                     <label for="signupCheck">I accept all terms & conditions</label>
@@ -29,14 +40,16 @@
 
         <div class="form login">
             <header>Login</header>
-            <form action="#">
-                <input type="text" placeholder="Email address" required />
-                <input type="password" placeholder="Password" required />
-                <a href="{% url 'password_reset'%}">Forgot password?</a>
-                <form action="{% url 'doctor_dashboard' %}">
-                    <input type="submit" value="Login" />
-                </form>
+            <form method="post" action="{% url 'vets:login' %}">
+                {% csrf_token %}
+                {{ login_form.username.errors }}
+                <input type="text" name="username" placeholder="Email address" required />
 
+                {{ login_form.password.errors }}
+                <input type="password" name="password" placeholder="Password" required />
+
+                <a href="{% url 'vets:password_reset' %}">Forgot password?</a>
+                <input type="submit" value="Login" />
             </form>
         </div>
 

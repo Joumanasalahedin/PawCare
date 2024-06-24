@@ -52,23 +52,8 @@
 
     <div class="cta-container">
         <p>Are You a Veterinarian? We've made it easier for you too!</p>
-        <a href="{% url 'doc_register_login'%}" class="cta-button">Get Started with Pawcare</a>
+        <a href="{% url 'vets:register'%}" class="cta-button">Get Started with Pawcare</a>
     </div>
-
-    <!-- Example to check link to db
-        <h2>List of Vets:</h2>
-    <ul>
-        {% for vet in vets %}
-        <li>
-            <strong>{{ vet.first_name }} {{ vet.last_name }}</strong><br>
-            Location: {{ vet.location }}<br>
-            Phone: {{ vet.phone_number }}<br>
-            Email: {{ vet.email }}<br>
-            Specialty: {{ vet.specialty }}<br>
-            <a href="{% url 'doctor_dashboard'%}">Go to Dashboard</a>
-        </li>
-        {% endfor %}
-    </ul> -->
 
     <footer id="aboutus">
         &copy; 2024. Pawcare All rights reserved.
