@@ -7,11 +7,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Pawcare</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
     {% load static %}
-    <link rel="stylesheet" href="{% static 'css/home.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <!-- <script src="{% static 'js/scriptcookie.js' %}"></script> -->
-    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
 
 </head>
 
@@ -21,14 +20,16 @@
             <div class="video">
                 <video autoplay loop muted>
                     {% get_media_prefix as MEDIA_URL %}
-                    <source src="{{ MEDIA_URL }}videos/bgv.mp4" type="video/mp4">
+                    <source src="{{ MEDIA_URL }}videos/bgv2.mp4" type="video/mp4">
                 </video>
             </div>
         </section>
+        <div class="logo">Pawcare</div>
         <h1 id="head">Pawcare</h1>
         <nav>
-            <a href="{% url 'login' %}">Login</a>
-            <a href="{% url 'register' %}">Register</a>
+            <a href="prl.html">Pet Login/Register</a>
+            <!-- <a href="{% url 'login' %}">Login</a>
+            <a href="{% url 'register' %}">Register</a> -->
         </nav>
     </header>
 
