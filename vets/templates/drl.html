@@ -5,67 +5,92 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Doctor Login & Signup Form</title>
+    <title>Pawcare - Doctor Login & Signup</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/drl.css' %}">
 </head>
 
 <body>
-    <section class="wrapper">
-        <div class="form signup">
-            <header>Signup</header>
-            <form method="post" action="{% url 'vets:register' %}">
-                {% csrf_token %}
-                {{ form.username.errors }}
-                <input type="text" name="username" placeholder="Email address" required
-                    value="{{ form.username.value|default_if_none:'' }}" />
+    <header>
+        <div class="logo">Pawcare</div>
+        <h1 id="head"></h1>
+        <nav>
+            <a href="{%url 'home' %}">Home</a>
+        </nav>
+    </header>
 
-                {{ form.name.errors }}
-                <input type="text" name="name" placeholder="Full name" required
-                    value="{{ form.name.value|default_if_none:'' }}" />
-
-                {{ form.password1.errors }}
-                <input type="password" name="password1" placeholder="Password" required />
-
-                {{ form.password2.errors }}
-                <input type="password" name="password2" placeholder="Confirm Password" required />
-
-                <div class="checkbox">
-                    <input type="checkbox" id="signupCheck" />
-                    <label for="signupCheck">I accept all terms & conditions</label>
+    <div class="login-wrap">
+        <div class="login-html">
+            <input id="tab-1" type="radio" name="tab" class="sign-in" checked>
+            <label for="tab-1" class="tab">Sign In</label>
+            <input id="tab-2" type="radio" name="tab" class="sign-up">
+            <label for="tab-2" class="tab">Sign Up</label>
+            <div class="login-form">
+                <div class="sign-in-htm">
+                    <form method="post" action="{% url 'vets:login' %}">
+                        {% csrf_token %}
+                        <div class="group">
+                            {{ login_form.username.errors }}
+                            <label for="user" class="label">Username</label>
+                            <input id="user" type="text" class="input" name="username" required>
+                        </div>
+                        <div class="group">
+                            {{ login_form.password.errors }}
+                            <label for="pass" class="label">Password</label>
+                            <input id="pass" type="password" class="input" data-type="password" name="password"
+                                required>
+                        </div>
+                        <div class="group">
+                            <input id="check" type="checkbox" class="check" checked>
+                            <label for="check"><span class="icon"></span> Keep me Signed in</label>
+                        </div>
+                        <div class="group">
+                            <input type="submit" class="button" value="Sign In">
+                        </div>
+                    </form>
+                    <div class="hr"></div>
+                    <div class="foot-lnk">
+                        <a href="{% url 'vets:password_reset' %}">Forgot Password?</a>
+                    </div>
                 </div>
-                <input type="submit" value="Signup" />
-            </form>
+
+                <div class="sign-up-htm">
+                    <form method="post" action="{% url 'vets:register' %}">
+                        {% csrf_token %}
+                        <div class="group">
+                            <label for="email" class="label">Email Address</label>
+                            {{ form.username.errors }}
+                            <input id="email" type="email" class="input" name="username" required>
+                        </div>
+                        <div class="group">
+                            <label for="new-user" class="label">Name</label>
+                            {{ form.name.errors }}
+                            <input id="new-user" type="text" class="input" name="name" required>
+                        </div>
+                        <div class="group">
+                            <label for="new-pass" class="label">Password</label>
+                            {{ form.password1.errors }}
+                            <input id="new-pass" type="password" class="input" data-type="password" name="password1"
+                                required>
+                        </div>
+                        <div class="group">
+                            <label for="repeat-pass" class="label">Repeat Password</label>
+                            {{ form.password2.errors }}
+                            <input id="repeat-pass" type="password" class="input" data-type="password" name="password2"
+                                required>
+                        </div>
+                        <div class="group">
+                            <input type="submit" class="button" value="Sign Up">
+                        </div>
+                    </form>
+                    <div class="hr"></div>
+                    <div class="foot-lnk">
+                        <label for="tab-1">Already Member?</label>
+                    </div>
+                </div>
+            </div>
         </div>
-
-        <div class="form login">
-            <header>Login</header>
-            <form method="post" action="{% url 'vets:login' %}">
-                {% csrf_token %}
-                {{ login_form.username.errors }}
-                <input type="text" name="username" placeholder="Email address" required />
-
-                {{ login_form.password.errors }}
-                <input type="password" name="password" placeholder="Password" required />
-
-                <a href="{% url 'vets:password_reset' %}">Forgot password?</a>
-                <input type="submit" value="Login" />
-            </form>
-        </div>
-
-        <script>
-            const wrapper = document.querySelector(".wrapper"),
-                signupHeader = document.querySelector(".signup header"),
-                loginHeader = document.querySelector(".login header");
-
-            loginHeader.addEventListener("click", () => {
-                wrapper.classList.add("active");
-            });
-            signupHeader.addEventListener("click", () => {
-                wrapper.classList.remove("active");
-            });
-        </script>
-    </section>
+    </div>
 </body>
 
 </html>

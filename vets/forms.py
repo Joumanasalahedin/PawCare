@@ -6,7 +6,7 @@ from .models import Vet
 class VetCreationForm(UserCreationForm):
     class Meta:
         model = Vet
-        fields = ('username', 'password1', 'password2', 'name')
+        fields = ('username', 'name', 'password1', 'password2')
 
 
 class VetLoginForm(AuthenticationForm):

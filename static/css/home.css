@@ -18,17 +18,6 @@ header {
     overflow: hidden;
 }
 
-.video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    /* Ensure the video is behind the text */
-    overflow: hidden;
-}
-
 .video video {
     position: absolute;
     top: 50%;
@@ -39,12 +28,6 @@ header {
     transform: translate(-50%, -50%);
 }
 
-h1 {
-    margin: 0;
-    padding: 100px 0;
-    font: 50px "Helvetica";
-    text-align: center;
-}
 
 nav {
     position: fixed;

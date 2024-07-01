@@ -2,8 +2,6 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
 from .forms import VetCreationForm, VetLoginForm
 from .models import Vet
-from django.contrib.auth import get_user_model
-from .auth_backends import VetBackend
 
 
 def register_vet(request):
