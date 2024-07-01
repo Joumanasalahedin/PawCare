@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PawCare - Pet Profile</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/user_dashboard.css' %}">
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">Pawcare</div>
+        <nav>
+            <a href="{% url 'home' %}">Home</a>
+        </nav>
+        <section>
+            <div class="video">
+                <video autoplay loop muted>
+                    {% get_media_prefix as MEDIA_URL %}
+                    <source src="{{ MEDIA_URL }}videos/bgv.mp4" type="video/mp4">
+                </video>
+            </div>
+        </section>
+    </header>
+
+
+    <div class="container">
+        <form>
+            <label for="name">Pet Name</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="age">Age</label>
+            <input type="number" id="age" name="age" required>
+
+            <label for="gender">Gender</label>
+            <select id="gender" name="gender">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+
+            <label for="breed">Breed</label>
+            <input type="text" id="breed" name="breed">
+
+            <label for="weight">Weight (kg)</label>
+            <input type="number" id="weight" name="weight">
+
+            <label for="vaccinations">Vaccination History</label>
+            <textarea id="vaccinations" name="vaccinations" rows="4"></textarea>
+
+            <label for="medical_notes">Medical Notes</label>
+            <textarea id="medical_notes" name="medical_notes" rows="4"></textarea>
+
+            <label for="previous_reports">Previous Medical Reports</label>
+            <textarea id="previous_reports" name="previous_reports" rows="4"></textarea>
+            <!-- Apply class "upload-button" to style the Upload Files button -->
+            <button type="button" class="upload-button">Upload Files</button>
+
+            <label for="additional_comments">Additional Comments</label>
+            <textarea id="additional_comments" name="additional_comments" rows="4"></textarea>
+
+            <!-- Apply class "add-pet-button" to style the Add Pet button -->
+            <button type="submit" class="add-pet-button">Add Pet</button>
+        </form>
+    </div>
+
+</body>
+
+</html>

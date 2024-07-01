@@ -11,79 +11,196 @@
 </head>
 
 <body>
-
-    <header>
-        <h1>Doctor's Dashboard</h1>
-        <i class="fas fa-user profile-icon"></i>
-    </header>
-
     <nav>
-        <a href="#">Home</a>
-        <a href="#">Patients</a>
-        <a href="#">Appointments</a>
+        <a href="#" onclick="showTab('dashboard')">Dashboard</a>
+        <a href="#" onclick="showTab('patients')">Patients</a>
+        <a href="#" onclick="showTab('appointments')">Appointments</a>
+        <a href="#" onclick="showTab('reports')">Reports</a>
     </nav>
 
+    <header>
+        <h1>Hello Dr. Mustermann</h1>
+        <i class="fas fa-user profile-icon" onclick="toggleModal()"></i>
+    </header>
+
     <div class="dashboard-container">
-        <div class="patient-form">
-            <h2>Add Patient Information</h2>
-            <form id="patientForm">
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" required>
-
-                <label for="address">Address:</label>
-                <input type="text" id="address" name="address" required>
-
-                <label for="age">Age:</label>
-                <input type="number" id="age" name="age" required>
-
-                <label for="medicalHistory">Medical History:</label>
-                <textarea id="medicalHistory" name="medicalHistory"></textarea>
-
-                <label for="birthdate">Birthdate:</label>
-                <input type="date" id="birthdate" name="birthdate" required>
-
-                <label for="insuranceNumber">Insurance Number:</label>
-                <input type="text" id="insuranceNumber" name="insuranceNumber" required>
-
-                <label for="registrationDate">Date of Registration:</label>
-                <input type="date" id="registrationDate" name="registrationDate" required>
-
-                <label for="contactNumber">Contact Number:</label>
-                <input type="tel" id="contactNumber" name="contactNumber" required>
-
-                <label for="emergencyContact">Emergency Contact:</label>
-                <input type="tel" id="emergencyContact" name="emergencyContact" required>
-
-                <label for="medications">Medications:</label>
-                <textarea id="medications" name="medications"></textarea>
-
-                <button type="button" onclick="submitForm()">Add Patient</button>
-            </form>
+        <div id="dashboard" class="tab-content active">
+            <div class="statistics-section">
+                <h2>Statistics</h2>
+                <div class="statistics-item">
+                    <span>Total Patients:</span>
+                    <span id="totalPatients">10</span> <!-- Example placeholder data -->
+                </div>
+                <div class="statistics-item">
+                    <span>Appointments Today:</span>
+                    <span id="appointmentsToday">3</span> <!-- Example placeholder data -->
+                </div>
+                <div class="chart-container" id="chartContainer"></div>
+            </div>
         </div>
 
-        <div class="statistics-section">
-            <h2>Statistics</h2>
-            <div class="statistics-item">
-                <span>Total Patients:</span>
-                <span id="totalPatients">0</span>
+        <div id="patients" class="tab-content">
+            <div class="form-container">
+                <h2>Add Patient Information</h2>
+                <form id="patientForm">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" placeholder="John Doe" required>
+
+                    <label for="address">Address:</label>
+                    <input type="text" id="address" name="address" placeholder="123 Main St, Cityville" required>
+
+                    <label for="age">Age:</label>
+                    <input type="number" id="age" name="age" placeholder="35" required>
+
+                    <label for="medicalHistory">Medical History:</label>
+                    <textarea id="medicalHistory" name="medicalHistory"
+                        placeholder="Previous surgeries, allergies"></textarea>
+
+                    <label for="birthdate">Birthdate:</label>
+                    <input type="date" id="birthdate" name="birthdate" required>
+
+                    <label for="insuranceNumber">Insurance Number:</label>
+                    <input type="text" id="insuranceNumber" name="insuranceNumber" placeholder="ABC123456789" required>
+
+                    <label for="registrationDate">Date of Registration:</label>
+                    <input type="date" id="registrationDate" name="registrationDate" required>
+
+                    <label for="contactNumber">Contact Number:</label>
+                    <input type="tel" id="contactNumber" name="contactNumber" placeholder="+1234567890" required>
+
+                    <label for="emergencyContact">Emergency Contact:</label>
+                    <input type="tel" id="emergencyContact" name="emergencyContact" placeholder="+1234567890" required>
+
+                    <label for="medications">Medications:</label>
+                    <textarea id="medications" name="medications" placeholder="Current medications"></textarea>
+
+                    <button type="button" onclick="submitForm()">Add Patient</button>
+                </form>
             </div>
-            <div class="statistics-item">
-                <span>Appointments Today:</span>
-                <span id="appointmentsToday">0</span>
+        </div>
+
+        <div id="appointments" class="tab-content">
+            <div class="form-container">
+                <h2>Manage Appointments</h2>
+                <form id="appointmentForm">
+                    <label for="patientName">Patient Name:</label>
+                    <input type="text" id="patientName" name="patientName" placeholder="John Doe" required>
+
+                    <label for="appointmentDate">Appointment Date:</label>
+                    <input type="date" id="appointmentDate" name="appointmentDate" required>
+
+                    <label for="appointmentTime">Appointment Time:</label>
+                    <input type="time" id="appointmentTime" name="appointmentTime" required>
+
+                    <button type="button" onclick="submitAppointment()">Schedule Appointment</button>
+                </form>
+            </div>
+        </div>
+
+        <div id="reports" class="tab-content">
+            <div class="form-container">
+                <h2>Generate Reports</h2>
+                <form id="reportForm">
+                    <label for="reportType">Report Type:</label>
+                    <select id="reportType" name="reportType" required>
+                        <option value="daily">Daily</option>
+                        <option value="monthly">Monthly</option>
+                        <option value="yearly">Yearly</option>
+                    </select>
+
+                    <button type="button" onclick="generateReport()">Generate Report</button>
+                </form>
             </div>
         </div>
     </div>
 
+    <div id="profileModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="toggleModal()">&times;</span>
+            <div class="profile-section">
+                <h2>Doctor's Profile</h2>
+                <p>Profile information goes here...</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
     <script>
-        function submitForm() {
-            // Here you can implement logic to handle the form submission
-            alert('Form submitted!'); // Replace this with actual form submission code
+        function toggleModal() {
+            const modal = document.getElementById('profileModal');
+            modal.style.display = modal.style.display === 'block' ? 'none' : 'block';
         }
 
-        // Your profile icon click event or navigation logic goes here
-        document.querySelector('.profile-icon').addEventListener('click', function () {
-            alert('My Profile Clicked');
-            // You can navigate to the profile page or show a profile modal here
+        window.onclick = function (event) {
+            const modal = document.getElementById('profileModal');
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        };
+
+        function showTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.getElementById(tabId).classList.add('active');
+        }
+
+        function submitForm() {
+            // Logic to handle form submission
+            alert('Patient form submitted!'); // Replace this with actual form submission code
+
+            // Update the statistics (for demonstration purposes)
+            document.getElementById('totalPatients').textContent = parseInt(document.getElementById('totalPatients').textContent) + 1;
+        }
+
+        function submitAppointment() {
+            // Logic to handle appointment scheduling
+            alert('Appointment scheduled!'); // Replace this with actual form submission code
+
+            // Update the statistics (for demonstration purposes)
+            document.getElementById('appointmentsToday').textContent = parseInt(document.getElementById('appointmentsToday').textContent) + 1;
+        }
+
+        function generateReport() {
+            // Logic to handle report generation
+            alert('Report generated!'); // Replace this with actual report generation code
+        }
+
+        // Example chart setup
+        const ctx = document.getElementById('chartContainer').getContext('2d');
+        const myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                datasets: [{
+                    label: '# of Votes',
+                    data: [12, 19, 3, 5, 2, 3],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
         });
     </script>
 </body>

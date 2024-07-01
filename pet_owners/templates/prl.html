@@ -14,7 +14,7 @@
         <div class="logo">Pawcare</div>
         <h1 id="head"></h1>
         <nav>
-            <a href="{%url 'home' %}">Home</a>
+            <a href="{% url 'home' %}">Home</a>
         </nav>
     </header>
 
@@ -26,46 +26,61 @@
             <label for="tab-2" class="tab">Sign Up</label>
             <div class="login-form">
                 <div class="sign-in-htm">
-                    <div class="group">
-                        <label for="user" class="label">Username</label>
-                        <input id="user" type="text" class="input">
-                    </div>
-                    <div class="group">
-                        <label for="pass" class="label">Password</label>
-                        <input id="pass" type="password" class="input" data-type="password">
-                    </div>
-                    <div class="group">
-                        <input id="check" type="checkbox" class="check" checked>
-                        <label for="check"><span class="icon"></span> Keep me Signed in</label>
-                    </div>
-                    <div class="group">
-                        <input type="submit" class="button" value="Sign In">
-                    </div>
+                    <form method="post" action="{% url 'pet_owners:login' %}">
+                        {% csrf_token %}
+                        <div class="group">
+                            {{ login_form.username.errors }}
+                            <label for="user" class="label">Username</label>
+                            <input id="user" type="text" class="input" name="username" required>
+                        </div>
+                        <div class="group">
+                            {{ login_form.password.errors }}
+                            <label for="pass" class="label">Password</label>
+                            <input id="pass" type="password" class="input" data-type="password" name="password"
+                                required>
+                        </div>
+                        <div class="group">
+                            <input id="check" type="checkbox" class="check" checked>
+                            <label for="check"><span class="icon"></span> Keep me Signed in</label>
+                        </div>
+                        <div class="group">
+                            <input type="submit" class="button" value="Sign In">
+                        </div>
+                    </form>
                     <div class="hr"></div>
                     <div class="foot-lnk">
                         <a href="pr.html">Forgot Password?</a>
                     </div>
                 </div>
                 <div class="sign-up-htm">
-                    <div class="group">
-                        <label for="new-user" class="label">Username</label>
-                        <input id="new-user" type="text" class="input">
-                    </div>
-                    <div class="group">
-                        <label for="new-pass" class="label">Password</label>
-                        <input id="new-pass" type="password" class="input" data-type="password">
-                    </div>
-                    <div class="group">
-                        <label for="repeat-pass" class="label">Repeat Password</label>
-                        <input id="repeat-pass" type="password" class="input" data-type="password">
-                    </div>
-                    <div class="group">
-                        <label for="email" class="label">Email Address</label>
-                        <input id="email" type="text" class="input">
-                    </div>
-                    <div class="group">
-                        <input type="submit" class="button" value="Sign Up">
-                    </div>
+                    <form method="post" action="{% url 'pet_owners:register' %}">
+                        {% csrf_token %}
+                        <div class="group">
+                            <label for="new-user" class="label">Username</label>
+                            {{ form.username.errors }}
+                            <input id="new-user" type="text" class="input" name="username" required>
+                        </div>
+                        <div class="group">
+                            <label for="email" class="label">Email Address</label>
+                            {{ form.email.errors }} <!-- Corrected typo: erros -> errors -->
+                            <input id="email" type="email" class="input" name="email" required>
+                        </div>
+                        <div class="group">
+                            <label for="new-pass" class="label">Password</label>
+                            {{ form.password1.errors }}
+                            <input id="new-pass" type="password" class="input" data-type="password" name="password1"
+                                required>
+                        </div>
+                        <div class="group">
+                            <label for="repeat-pass" class="label">Repeat Password</label>
+                            {{ form.password2.errors }}
+                            <input id="repeat-pass" type="password" class="input" data-type="password" name="password2"
+                                required>
+                        </div>
+                        <div class="group">
+                            <input type="submit" class="button" value="Sign Up">
+                        </div>
+                    </form>
                     <div class="hr"></div>
                     <div class="foot-lnk">
                         <label for="tab-1">Already Member?</label>
@@ -75,6 +90,5 @@
         </div>
     </div>
 </body>
-
 
 </html>

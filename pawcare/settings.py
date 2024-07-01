@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-9ictpz0pi_)i8hc*e^&(ucjlv*kci@-e-dfbw%$t%2^_w6m%&r
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -139,5 +139,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'vets.auth_backends.VetBackend',
-    # 'pet_owners.auth_backends.PetOwnersBackend',
+    'pet_owners.auth_backends.PetOwnersBackend',
 ]
