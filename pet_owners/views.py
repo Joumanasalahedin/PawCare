@@ -2,8 +2,9 @@
 
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
-from .forms import PetOwnerCreationForm, PetOwnerLoginForm
-from .models import PetOwner
+from django.contrib.auth.decorators import login_required
+from .forms import PetOwnerCreationForm, PetOwnerLoginForm, PetForm
+from .models import PetOwner, Pet
 
 
 def register_owner(request):
@@ -48,9 +49,24 @@ def login_owner(request):
     return render(request, 'prl.html', {'login_form': form, 'form': PetOwnerCreationForm()})
 
 
+@login_required
 def user_dashboard(request, owner_id):
-    owner = PetOwner.objects.get(id=owner_id)
-    return render(request, 'user_dashboard.html', {'owner': owner})
+    owner = PetOwner.objects.get(id=owner_id)  # Fetch the PetOwner instance
+
+    if request.method == 'POST':
+        form = PetForm(request.POST)
+        if form.is_valid():
+            pet = form.save(commit=False)
+            pet.owner = owner  # Set the pet owner to the PetOwner instance
+            pet.save()
+            # Redirect to the same page after saving
+            return redirect('pet_owners:user_dashboard', owner_id=owner.id)
+    else:
+        form = PetForm()
+
+    pets = Pet.objects.filter(owner=owner)  # Filter pets by the owner
+
+    return render(request, 'user_dashboard.html', {'form': form, 'pets': pets, 'owner': owner})
 
 
 def password_reset(request):

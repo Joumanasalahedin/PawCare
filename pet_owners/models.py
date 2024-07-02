@@ -36,3 +36,21 @@ class PetOwner(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.name
+
+
+class Pet(models.Model):
+    owner = models.ForeignKey(
+        PetOwner, on_delete=models.CASCADE, related_name='pets')
+    name = models.CharField(max_length=100, null=False)
+    breed = models.CharField(max_length=100, null=False, blank=True)
+    age = models.IntegerField()
+    gender = models.CharField(max_length=10, choices=[
+                              ('male', 'Male'), ('female', 'Female')])
+    weight = models.FloatField(null=True, blank=True)
+    vaccinations = models.TextField(null=True, blank=True)
+    medical_notes = models.TextField(null=True, blank=True)
+    previous_reports = models.TextField(null=True, blank=True)
+    additional_comments = models.TextField(null=True, blank=True)
+
+    def __str__(self):
+        return self.name
