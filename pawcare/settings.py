@@ -82,7 +82,7 @@ DATABASES = {
         'NAME': 'pawcare_db',
         'USER': 'admin',
         'PASSWORD': 'PawCare123',
-        'HOST': 'localhost',
+        'HOST': 'postgres',
         'PORT': '',
     }
 }
