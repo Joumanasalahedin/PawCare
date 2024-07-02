@@ -1,11 +1,51 @@
 body {
-    background: #accffe;
+    background: #FFC94A;
     background-size: 400% 400%;
     animation: gradientAnimation 15s ease infinite;
     color: #ffffff;
     font-family: 'Helvetica', sans-serif;
     margin: 0;
     padding: 0;
+}
+
+nav {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background-color: #453F78;
+    /* Adjusted to semi-transparent */
+    padding: 10px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 5px;
+    z-index: 2;
+    /* Ensure the nav is above the video */
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 10px;
+    font-weight: bold;
+    font-size: 14px;
+    transition: color 0.3s ease;
+}
+
+nav a:hover {
+    color: #FFC94A;
+}
+
+.logo {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    color: #fff;
+    z-index: 3;
 }
 
 .results-container {
@@ -17,7 +57,7 @@ body {
 }
 
 .clinic {
-    background: #0C2C47;
+    background: #453F78;
     color: #fff;
     padding: 20px;
     margin: 10px 0;

@@ -10,13 +10,14 @@
     <link rel="stylesheet" href="{% static 'css/search.css' %}">
 </head>
 
-<header>
-    <nav>
-        <a href="{% url 'home' %}">Home</a>
-    </nav>
-</header>
-
 <body>
+    <header>
+        <div class="logo">Pawcare</div>
+        <h1 id="head"></h1>
+        <nav>
+            <a href="{%url 'home' %}">Home</a>
+        </nav>
+    </header>
 
     <div class="results-container" id="results-container">
         {% if results %}
