@@ -26,6 +26,7 @@ urlpatterns = [
     path('search/', search, name='search'),
     path('vets/', include('vets.urls')),
     path('pet_owners/', include('pet_owners.urls')),
+    path('appointments/', include('appointments.urls')),
 ]
 
 if settings.DEBUG:

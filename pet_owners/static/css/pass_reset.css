@@ -1,6 +1,6 @@
 body {
     font-family: Helvetica, sans-serif;
-    background-color: #f2f2f2;
+    background-color: #8a96ae;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -36,7 +36,7 @@ nav {
 }
 
 nav a {
-    color: #000000;
+    color: #010101;
     text-decoration: none;
     margin: 0 10px;
     font-weight: bold;
@@ -45,7 +45,7 @@ nav a {
 }
 
 nav a:hover {
-    color: #F5F7F8;
+    color: #000000;
 }
 
 .container {

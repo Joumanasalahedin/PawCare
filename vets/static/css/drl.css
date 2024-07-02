@@ -139,10 +139,15 @@ nav a:hover {
 }
 
 .login-form .group .label,
-.login-form .group .input,
+.login-form .group .input {
+    width: 100%;
+    color: #000000;
+    display: block;
+}
+
 .login-form .group .button {
     width: 100%;
-    color: #f7f7f7;
+    color: #ffffff;
     display: block;
 }
 

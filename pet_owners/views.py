@@ -51,3 +51,7 @@ def login_owner(request):
 def user_dashboard(request, owner_id):
     owner = PetOwner.objects.get(id=owner_id)
     return render(request, 'user_dashboard.html', {'owner': owner})
+
+
+def password_reset(request):
+    return render(request, 'pass_reset.html')
