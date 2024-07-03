@@ -30,7 +30,9 @@
             {% if vet.email %}
             <div class="clinic-email">{{ vet.email }}</div>
             {% endif %}
-
+            <div class="warning-card">
+                This doctor is not registered with Pawcare, but here's their contact number: {{ vet.phone_number }}
+            </div>
         </div>
         {% endfor %}
         {% else %}

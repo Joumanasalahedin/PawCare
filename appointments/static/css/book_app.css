@@ -1,19 +1,11 @@
 body {
-    font-family: Helvetica, sans-serif;
-    background-color: #FFC94A;
+    background: url("../images/app.png");
+    background-size: 100%;
+    background-position: center no-repeat;
+    color: #000000;
+    font-family: 'HELVETICA', sans-serif;
     margin: 0;
     padding: 0;
-}
-
-.logo {
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    font-family: 'Roboto', sans-serif;
-    font-weight: 700;
-    font-size: 24px;
-    color: #000000;
-    z-index: 3;
 }
 
 nav {
@@ -24,16 +16,14 @@ nav {
     justify-content: flex-end;
     align-items: center;
     background-color: #453F78;
-    /* Adjusted to semi-transparent */
     padding: 10px;
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
     border-radius: 5px;
     z-index: 2;
-    /* Ensure the nav is above the video */
 }
 
 nav a {
-    color: #F5F7F8;
+    color: #ffffff;
     text-decoration: none;
     margin: 0 10px;
     font-weight: bold;
@@ -48,8 +38,9 @@ nav a:hover {
 .container {
     max-width: 800px;
     margin: 20px auto;
+    margin-top: 200px;
     padding: 20px;
-    background-color: #453F78;
+    background-color: #33333a7d;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -102,4 +93,81 @@ h1 {
 
 .card button:hover {
     background-color: #45a049;
+}
+
+.results-container {
+    margin: 50px auto;
+    max-width: 800px;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+}
+
+.clinic {
+    background: #453F78;
+    color: #fff;
+    padding: 20px;
+    margin: 10px 0;
+    border-radius: 5px;
+    position: relative;
+}
+
+.clinic .clinic-name {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.clinic .clinic-address,
+.clinic .clinic-phone {
+    font-size: 18px;
+}
+
+.clinic .clinic-distance {
+    font-size: 16px;
+    font-style: italic;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.clinic .book-button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #FFC94A;
+    border: none;
+    color: #453F78;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.clinic .book-button:hover {
+    background-color: #453F78;
+    color: #FFC94A;
+}
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.logo {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    color: #ffffff;
+    z-index: 3;
 }
