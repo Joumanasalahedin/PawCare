@@ -3,11 +3,12 @@ from pet_owners.models import PetOwner
 from vets.models import Vet
 
 
-class Appointment(models.Model):
-    pet_owner = models.ForeignKey(PetOwner, on_delete=models.CASCADE)
+class Appointments(models.Model):
+    owner = models.ForeignKey(PetOwner, on_delete=models.CASCADE)
     vet = models.ForeignKey(Vet, on_delete=models.CASCADE)
     date = models.DateField()
     time = models.TimeField()
+    complaints = models.TextField(null=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

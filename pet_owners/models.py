@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin, Group, Permission
 from django.db import models
+from vets.models import Vet
 
 
 class PetOwnerManager(BaseUserManager):
@@ -41,6 +42,8 @@ class PetOwner(AbstractBaseUser, PermissionsMixin):
 class Pet(models.Model):
     owner = models.ForeignKey(
         PetOwner, on_delete=models.CASCADE, related_name='pets')
+    vet = models.ForeignKey(Vet, on_delete=models.CASCADE,
+                            null=True, related_name='pets')
     name = models.CharField(max_length=100, null=False)
     breed = models.CharField(max_length=100, null=False, blank=True)
     age = models.IntegerField()
