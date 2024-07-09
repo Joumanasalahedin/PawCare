@@ -1,7 +1,8 @@
 body {
     background: url("../images/search.jpg");
     background-size: 95%;
-    color: #ffffff;
+    background-position: center no-repeat;
+    color: #000000;
     font-family: 'Helvetica', sans-serif;
     margin: 0;
     padding: 0;
@@ -15,16 +16,14 @@ nav {
     justify-content: flex-end;
     align-items: center;
     background-color: #453F78;
-    /* Adjusted to semi-transparent */
     padding: 10px;
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
     border-radius: 5px;
     z-index: 2;
-    /* Ensure the nav is above the video */
 }
 
 nav a {
-    color: #fff;
+    color: #ffffff;
     text-decoration: none;
     margin: 0 10px;
     font-weight: bold;
@@ -36,18 +35,7 @@ nav a:hover {
     color: #FFC94A;
 }
 
-.logo {
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    font-family: 'Roboto', sans-serif;
-    font-weight: 700;
-    font-size: 24px;
-    color: #fff;
-    z-index: 3;
-}
-
-.results-container {
+.container {
     max-width: 800px;
     margin: 20px auto;
     margin-top: 200px;
@@ -56,9 +44,59 @@ nav a:hover {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+h1 {
+    text-align: center;
+    color: #ffffff;
+}
+
+.appointment-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.card {
+    background-color: #f9f9f981;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    flex: 1 1 300px;
+    max-width: calc(50% - 20px);
+    position: relative;
+}
+
+.card h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.card p {
+    margin-bottom: 15px;
+    color: #666;
+}
+
+.warning-card {
+    background-color: #ffcccb;
+    color: #333;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+    font-size: 14px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.results-container {
+    margin: 50px auto;
+    max-width: 800px;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+}
+
 .clinic {
-    background: #ffffffb9;
-    color: #000;
+    background: #453F78;
+    color: #fff;
     padding: 20px;
     margin: 10px 0;
     border-radius: 5px;
@@ -86,9 +124,9 @@ nav a:hover {
 .clinic .book-button {
     margin-top: 10px;
     padding: 10px 20px;
-    background-color: #accffe;
+    background-color: #FFC94A;
     border: none;
-    color: #0C2C47;
+    color: #453F78;
     cursor: pointer;
     border-radius: 5px;
     font-size: 16px;
@@ -96,8 +134,8 @@ nav a:hover {
 }
 
 .clinic .book-button:hover {
-    background-color: #0C2C47;
-    color: #accffe;
+    background-color: #453F78;
+    color: #FFC94A;
 }
 
 @keyframes gradientAnimation {
@@ -114,12 +152,13 @@ nav a:hover {
     }
 }
 
-.warning-card {
-    background-color: #ffcccb;
-    color: #333;
-    padding: 10px;
-    border-radius: 5px;
-    margin-top: 10px;
-    font-size: 14px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+.logo {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    color: #ffffff;
+    z-index: 3;
 }

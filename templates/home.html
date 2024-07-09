@@ -6,63 +6,63 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Pawcare</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Forum&display=swap" rel="stylesheet">
     {% load static %}
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/home.css' %}">
 
 </head>
 
 <body class="fadeIn">
+    <div class="background"></div>
     <header>
         <section>
-            <div class="video">
-                <video autoplay loop muted>
-                    {% get_media_prefix as MEDIA_URL %}
-                    <source src="{{ MEDIA_URL }}videos/bgv2.mp4" type="video/mp4">
-                </video>
-            </div>
+            <div class="logo">Pawcare</div>
+            <nav>
+                <a href="{% url 'pet_owners:register'%}">Pet Login/Register</a>
+            </nav>
+            <p>Your Trusted Partner in Pet Care</p>
         </section>
-        <div class="logo">Pawcare</div>
-        <h1 id="head">Pawcare</h1>
-        <nav>
-            <a href="{% url 'pet_owners:register'%}">Pet Login/Register</a>
-        </nav>
     </header>
 
-    <legend>Search Veterinarians Near You</legend>
+    <section class="section">
+        <h2>Our Services</h2>
+        <div class="card-container">
+            <a href="{% url 'vets:register'%}">
+                <figure>
+                    <img src="{% static 'images/vet.png' %}" alt="vet">
+                    <figcaption>Vet Services</figcaption>
+                </figure>
+            </a>
+            <a href="{% url 'vets:vet_search'%}">
+                <figure>
+                    <img src="{% static 'images/vet.png' %}" alt="vet">
+                    <figcaption>Appointments</figcaption>
+                </figure>
+            </a>
+            <a href="{% url 'recreation:rec_search' %}">
+                <figure>
+                    <img src="{% static 'images/vet.png' %}" alt="Pet Boarding and Recreational Areas">
+                    <figcaption>Pet Boarding and Recreational Areas</figcaption>
+                </figure>
+            </a>
+        </div>
+    </section>
 
-    <div class="s01">
-        <form action="{% url 'search' %}" method="get">
-            <div class="inner-form">
-                <div class="input-field first-wrap">
-                    <input id="search" name="search" type="text" placeholder="Name, Institution, Clinic.">
-                </div>
-                <div class="input-field second-wrap">
-                    <input id="location" name="location" type="text" placeholder="Location">
-                </div>
-                <div class="input-field third-wrap">
-                    <button class="btn-search" type="submit">Search</button>
-                </div>
-            </div>
-        </form>
+    <div class="scroll-buttons">
+        <button onclick="scrollToTop()">Scroll to Top</button>
+        <button onclick="scrollToBottom()">Scroll to Bottom</button>
     </div>
-
-    <div class="cta-container">
-        <p>Are You a Veterinarian? We've made it easier for you too!</p>
-        <a href="{% url 'vets:register'%}" class="cta-button">Get Started with Pawcare</a>
-    </div>
-
-    <footer id="aboutus">
-        &copy; 2024. Pawcare All rights reserved.
-    </footer>
-
-    <button class="scroll-to-top" onclick="scrollToTop()">Scroll to Top</button>
 
     <script>
         function scrollToTop() {
             window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function scrollToBottom() {
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
         }
     </script>
 </body>

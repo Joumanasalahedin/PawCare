@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
 from .forms import VetCreationForm, VetLoginForm
 from .models import Vet
+from django.db.models import Q
 
 
 def register_vet(request):
@@ -49,3 +50,31 @@ def password_reset(request):
 def doctor_dashboard(request, vet_id):
     vet = Vet.objects.get(id=vet_id)
     return render(request, 'doctor_dashboard.html', {'vet': vet})
+
+
+def vet_search(request):
+    vets = Vet.objects.all()
+    return render(request, 'vet_search.html', {'vets': vets})
+
+
+def vet_results(request):
+    search_query = request.GET.get('search', '')
+    location_query = request.GET.get('location', '')
+
+    query = Q()
+
+    if search_query:
+        query &= Q(name__icontains=search_query)
+
+    if location_query:
+        query &= (Q(city__icontains=location_query) |
+                  Q(state__icontains=location_query) |
+                  Q(PLZ__icontains=location_query))
+
+    if not search_query and not location_query:
+        results = Vet.objects.all().order_by('city')
+    else:
+        results = Vet.objects.filter(query).order_by(
+            'city') if query else Vet.objects.none()
+
+    return render(request, 'vet_results.html', {'results': results})
