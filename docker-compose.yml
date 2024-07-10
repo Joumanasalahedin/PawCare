@@ -28,6 +28,7 @@ services:
       POSTGRES_PASSWORD: PawCare123
     volumes:
       - pgdata:/var/lib/postgresql/data
+      - ./specific_tables.sql:/docker-entrypoint-initdb.d/specific_tables.sql
 
 volumes:
   pgdata:
