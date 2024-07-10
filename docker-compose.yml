@@ -19,16 +19,15 @@ services:
       - "8000:8000"
     depends_on:
       - postgres
+    env_file:
+      - .env
 
   postgres:
     image: postgres
-    environment:
-      POSTGRES_DB: pawcare_db
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: PawCare123
+    env_file:
+      - .env
     volumes:
       - pgdata:/var/lib/postgresql/data
-      - ./specific_tables.sql:/docker-entrypoint-initdb.d/specific_tables.sql
 
 volumes:
   pgdata:
