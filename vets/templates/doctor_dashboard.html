@@ -15,12 +15,14 @@
         <a href="#" onclick="showTab('dashboard')">Dashboard</a>
         <a href="#" onclick="showTab('patients')">Patients</a>
         <a href="#" onclick="showTab('appointments')">Appointments</a>
-        <a href="#" onclick="showTab('reports')">Reports</a>
     </nav>
 
     <header>
-        <h1>Hello Dr. Mustermann</h1>
-        <i class="fas fa-user profile-icon" onclick="toggleModal()"></i>
+        <h1>Hello Dr. {{ vet.name }}</h1>
+        <div class="header-right">
+            <a href="{% url 'home' %}" class="home-icon"><i class="fas fa-home"></i></a>
+            <i class="fas fa-user profile-icon" onclick="toggleModal()"></i>
+        </div>
     </header>
 
     <div class="dashboard-container">
@@ -29,62 +31,119 @@
                 <h2>Statistics</h2>
                 <div class="statistics-item">
                     <span>Total Patients:</span>
-                    <span id="totalPatients">10</span> <!-- Example placeholder data -->
+                    <span id="totalPatients">{{ total_pets }}</span>
                 </div>
                 <div class="statistics-item">
                     <span>Appointments Today:</span>
-                    <span id="appointmentsToday">3</span> <!-- Example placeholder data -->
+                    <span id="appointmentsToday">{{ appointments_today }}</span>
                 </div>
-                <div class="chart-container" id="chartContainer"></div>
+                <div class="chart-container" id="barChartContainer"></div>
+                <div class="table-container">
+                    <h3>Appointment Details</h3>
+                    <table id="appointmentTable">
+                        <thead>
+                            <tr>
+                                <th>Patient Name</th>
+                                <th>Date</th>
+                                <th>Time</th>
+                                <th>Reason</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for appointment in appointments %}
+                            <tr>
+                                <td>{{ appointment.pet.name }}</td>
+                                <td>{{ appointment.date }}</td>
+                                <td>{{ appointment.time }}</td>
+                                <td>{{ appointment.complaints }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
 
         <div id="patients" class="tab-content">
             <div class="form-container">
+                <h2>Patient Details</h2>
+                <table id="patientTable">
+                    <thead>
+                        <tr>
+                            <th>Pet Name</th>
+                            <th>Breed</th>
+                            <th>Gender</th>
+                            <th>Age</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for pet in pets %}
+                        <tr>
+                            <td>{{ pet.name }}</td>
+                            <td>{{ pet.breed }}</td>
+                            <td>{{ pet.gender }}</td>
+                            <td>{{ pet.age }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
                 <h2>Add Patient Information</h2>
-                <form id="patientForm">
-                    <label for="name">Name:</label>
+                <form id="patientForm" method="post" action="{% url 'vets:doctor_dashboard' vet.id %}">
+                    {% csrf_token %}
+                    {{ pet_owner_form.non_field_errors }}
+                    <label for="name">Pet Owner Name:</label>
+                    {{ pet_owner_form.name.errors }}
                     <input type="text" id="name" name="name" placeholder="John Doe" required>
 
-                    <label for="address">Address:</label>
-                    <input type="text" id="address" name="address" placeholder="123 Main St, Cityville" required>
+                    <label for="username">Username:</label>
+                    {{ pet_owner_form.username.errors }}
+                    <input type="text" id="username" name="username" placeholder="johndoe" required>
+
+                    <label for="email">Email:</label>
+                    {{ pet_owner_form.email.errors }}
+                    <input type="email" id="email" name="email" placeholder="example@example.com" required>
+
+                    <label for="phone_number">Contact Number:</label>
+                    {{ pet_owner_form.phone_number.errors }}
+                    <input type="tel" id="phone_number" name="phone_number" placeholder="555-555-5555" required>
+
+                    {{ pet_form.non_field_errors }}
+                    <label for="pet_name">Pet Name:</label>
+                    {{ pet_form.name.errors }}
+                    <input type="text" id="pet_name" name="pet_name" placeholder="Max" required>
+
+                    <label for="breed">Breed:</label>
+                    {{ pet_form.breed.errors }}
+                    <input type="text" id="breed" name="breed" placeholder="Golden Retriever" required>
 
                     <label for="age">Age:</label>
-                    <input type="number" id="age" name="age" placeholder="35" required>
+                    {{ pet_form.age.errors }}
+                    <input type="number" id="age" name="age" placeholder="30" required>
 
-                    <label for="medicalHistory">Medical History:</label>
-                    <textarea id="medicalHistory" name="medicalHistory"
-                        placeholder="Previous surgeries, allergies"></textarea>
+                    <label for="gender">Gender:</label>
+                    {{ pet_form.gender.errors }}
+                    <select id="gender" name="gender" required>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
 
-                    <label for="birthdate">Birthdate:</label>
-                    <input type="date" id="birthdate" name="birthdate" required>
-
-                    <label for="insuranceNumber">Insurance Number:</label>
-                    <input type="text" id="insuranceNumber" name="insuranceNumber" placeholder="ABC123456789" required>
-
-                    <label for="registrationDate">Date of Registration:</label>
-                    <input type="date" id="registrationDate" name="registrationDate" required>
-
-                    <label for="contactNumber">Contact Number:</label>
-                    <input type="tel" id="contactNumber" name="contactNumber" placeholder="+1234567890" required>
-
-                    <label for="emergencyContact">Emergency Contact:</label>
-                    <input type="tel" id="emergencyContact" name="emergencyContact" placeholder="+1234567890" required>
-
-                    <label for="medications">Medications:</label>
-                    <textarea id="medications" name="medications" placeholder="Current medications"></textarea>
-
-                    <button type="button" onclick="submitForm()">Add Patient</button>
+                    <button type="submit" name="add_patient">Submit</button>
                 </form>
             </div>
         </div>
 
         <div id="appointments" class="tab-content">
             <div class="form-container">
-                <h2>Manage Appointments</h2>
-                <form id="appointmentForm">
-                    <label for="patientName">Patient Name:</label>
-                    <input type="text" id="patientName" name="patientName" placeholder="John Doe" required>
+                <h2>Schedule an Appointment</h2>
+                <form id="appointmentForm" method="post" action="{% url 'vets:doctor_dashboard' vet.id %}">
+                    {% csrf_token %}
+                    <label for="pet">Patient Name:</label>
+                    <select id="pet" name="pet" required>
+                        <option value="" disabled selected>Select Patient</option>
+                        {% for pet in pets %}
+                        <option value="{{ pet.id }}">{{ pet.name }}</option>
+                        {% endfor %}
+                    </select>
 
                     <label for="appointmentDate">Appointment Date:</label>
                     <input type="date" id="appointmentDate" name="appointmentDate" required>
@@ -92,23 +151,10 @@
                     <label for="appointmentTime">Appointment Time:</label>
                     <input type="time" id="appointmentTime" name="appointmentTime" required>
 
-                    <button type="button" onclick="submitAppointment()">Schedule Appointment</button>
-                </form>
-            </div>
-        </div>
+                    <label for="reason">Reason for Appointment:</label>
+                    <input type="text" id="reason" name="reason" placeholder="Check-up" required>
 
-        <div id="reports" class="tab-content">
-            <div class="form-container">
-                <h2>Generate Reports</h2>
-                <form id="reportForm">
-                    <label for="reportType">Report Type:</label>
-                    <select id="reportType" name="reportType" required>
-                        <option value="daily">Daily</option>
-                        <option value="monthly">Monthly</option>
-                        <option value="yearly">Yearly</option>
-                    </select>
-
-                    <button type="button" onclick="generateReport()">Generate Report</button>
+                    <button type="submit" name="schedule_appointment">Submit</button>
                 </form>
             </div>
         </div>
@@ -118,90 +164,34 @@
         <div class="modal-content">
             <span class="close" onclick="toggleModal()">&times;</span>
             <div class="profile-section">
-                <h2>Doctor's Profile</h2>
-                <p>Profile information goes here...</p>
+                <h2>Dr. {{ vet.name }}'s Profile</h2>
+                <p>Name: {{ vet.name }}</p>
+                <p>Email: {{ vet.email }}</p>
+                <p>Phone: {{ vet.phone_number }}</p>
             </div>
         </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-        function toggleModal() {
-            const modal = document.getElementById('profileModal');
-            modal.style.display = modal.style.display === 'block' ? 'none' : 'block';
-        }
-
-        window.onclick = function (event) {
-            const modal = document.getElementById('profileModal');
-            if (event.target == modal) {
-                modal.style.display = 'none';
-            }
-        };
-
+        // JavaScript for toggling tabs
         function showTab(tabId) {
-            document.querySelectorAll('.tab-content').forEach(tab => {
-                tab.classList.remove('active');
-            });
+            const tabs = document.getElementsByClassName('tab-content');
+            for (let i = 0; i < tabs.length; i++) {
+                tabs[i].classList.remove('active');
+            }
             document.getElementById(tabId).classList.add('active');
         }
 
-        function submitForm() {
-            // Logic to handle form submission
-            alert('Patient form submitted!'); // Replace this with actual form submission code
-
-            // Update the statistics (for demonstration purposes)
-            document.getElementById('totalPatients').textContent = parseInt(document.getElementById('totalPatients').textContent) + 1;
-        }
-
-        function submitAppointment() {
-            // Logic to handle appointment scheduling
-            alert('Appointment scheduled!'); // Replace this with actual form submission code
-
-            // Update the statistics (for demonstration purposes)
-            document.getElementById('appointmentsToday').textContent = parseInt(document.getElementById('appointmentsToday').textContent) + 1;
-        }
-
-        function generateReport() {
-            // Logic to handle report generation
-            alert('Report generated!'); // Replace this with actual report generation code
-        }
-
-        // Example chart setup
-        const ctx = document.getElementById('chartContainer').getContext('2d');
-        const myChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-                datasets: [{
-                    label: '# of Votes',
-                    data: [12, 19, 3, 5, 2, 3],
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
+        // JavaScript for toggling modal
+        function toggleModal() {
+            const modal = document.getElementById('profileModal');
+            if (modal.style.display === "block") {
+                modal.style.display = "none";
+            } else {
+                modal.style.display = "block";
             }
-        });
+        }
     </script>
 </body>
 

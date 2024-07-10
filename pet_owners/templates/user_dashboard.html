@@ -28,9 +28,32 @@
 
 
     <div class="container">
-        <form>
+        {% if pets %}
+        <h2>Pet Information</h2>
+        {% for pet in pets %}
+        <p><strong>Name:</strong> {{ pet.name }}</p>
+        <p><strong>Breed:</strong> {{ pet.breed }}</p>
+        <p><strong>Age:</strong> {{ pet.age }}</p>
+        <p><strong>Gender:</strong> {{ pet.gender }}</p>
+        <p><strong>Weight:</strong> {{ pet.weight }}</p>
+        <p><strong>Vaccination History:</strong> {{ pet.vaccinations }}</p>
+        <p><strong>Medical Notes:</strong> {{ pet.medical_notes }}</p>
+        <p><strong>Previous Reports:</strong> {{ pet.previous_reports }}</p>
+        <p><strong>Additional Comments:</strong> {{ pet.additional_comments }}</p>
+        {% endfor %}
+        {% else %}
+        <p>You have no pets added yet.</p>
+        {% endif %}
+        <form method="post" action="{% url 'pet_owners:user_dashboard' owner.id %}">
+            {% csrf_token %}
+            <label for="owner">Owner</label>
+            <input type="number" id="owner" name="owner" required>
+
             <label for="name">Pet Name</label>
             <input type="text" id="name" name="name" required>
+
+            <label for="breed">Breed</label>
+            <input type="text" id="breed" name="breed">
 
             <label for="age">Age</label>
             <input type="number" id="age" name="age" required>
@@ -40,9 +63,6 @@
                 <option value="male">Male</option>
                 <option value="female">Female</option>
             </select>
-
-            <label for="breed">Breed</label>
-            <input type="text" id="breed" name="breed">
 
             <label for="weight">Weight (kg)</label>
             <input type="number" id="weight" name="weight">
@@ -55,8 +75,8 @@
 
             <label for="previous_reports">Previous Medical Reports</label>
             <textarea id="previous_reports" name="previous_reports" rows="4"></textarea>
-            <!-- Apply class "upload-button" to style the Upload Files button -->
-            <button type="button" class="upload-button">Upload Files</button>
+            <!-- Apply class "upload-button" to style the Upload Files button
+            <button type="button" class="upload-button">Upload Files</button> -->
 
             <label for="additional_comments">Additional Comments</label>
             <textarea id="additional_comments" name="additional_comments" rows="4"></textarea>

@@ -1,22 +1,22 @@
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Helvetica', sans-serif;
     margin: 0;
     padding: 0;
     background-color: #f4f6f8;
-    display: flex;
     color: #333;
+    display: flex;
 }
 
 header {
-    background-color: #FFC94A;
-    color: #453F78;
-    padding: 20px;
+    background: #000000;
+    color: #ffffff;
+    padding: 40px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     position: fixed;
-    width: calc(100% - 270px);
-    left: 240px;
+    width: calc(100% - 200px);
+    left: 210px;
     top: 0;
     z-index: 1000;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -28,16 +28,29 @@ header h1 {
     font-weight: 500;
 }
 
+.header-right {
+    display: flex;
+    align-items: center;
+}
+
+.home-icon {
+    font-size: 24px;
+    color: #ffffff;
+    cursor: pointer;
+    margin-right: 40px;
+}
+
 .profile-icon {
     font-size: 24px;
-    color: #453F78;
+    color: #ffffff;
     cursor: pointer;
+    margin-right: 60px;
 }
 
 nav {
-    background-color: #453F78;
+    background-color: #b1ef06;
     padding: 20px;
-    width: 200px;
+    width: 170px;
     position: fixed;
     height: 100%;
     top: 0;
@@ -47,26 +60,26 @@ nav {
 }
 
 nav a {
-    color: #ecf0f1;
+    color: #000000;
     text-decoration: none;
     padding: 15px 20px;
     display: block;
     transition: background-color 0.3s ease, color 0.3s ease;
     font-weight: 500;
     margin-bottom: 10px;
-    border-radius: 5px;
+    border-radius: 25px;
 }
 
 nav a:hover {
-    background-color: #08080883;
-    color: #ffffff;
+    background-color: #1010107f;
+    color: #f4f4f4;
 }
 
 .dashboard-container {
     margin-top: 80px;
-    margin-left: 220px;
+    margin-left: 200px;
     padding: 20px;
-    width: calc(100% - 220px);
+    width: calc(100% - 200px);
 }
 
 .tab-content {
@@ -79,7 +92,7 @@ nav a:hover {
 
 .form-container,
 .statistics-section {
-    background-color: #ffffff;
+    background: url('../images/dd.png');
     padding: 25px;
     border-radius: 10px;
     margin-top: 20px;
@@ -88,7 +101,7 @@ nav a:hover {
 
 .form-container h2,
 .statistics-section h2 {
-    color: #453F78;
+    color: #82b014;
     margin-bottom: 15px;
     font-weight: 500;
 }
@@ -106,16 +119,15 @@ nav a:hover {
     width: calc(100% - 16px);
     padding: 10px;
     margin-bottom: 15px;
-    border: 1px solid #bdc3c7;
+    border: 1px solid #090a0a;
     border-radius: 4px;
     box-sizing: border-box;
     outline: none;
-    font-family: 'Roboto', sans-serif;
 }
 
 .form-container button {
-    background-color: #453F78;
-    color: #ffffff;
+    background-color: #82b014;
+    color: #000000;
     padding: 12px;
     border: none;
     border-radius: 5px;
@@ -126,7 +138,7 @@ nav a:hover {
 }
 
 .form-container button:hover {
-    background-color: #453F78;
+    background-color: #82b014;
 }
 
 .statistics-item {
@@ -134,7 +146,7 @@ nav a:hover {
     justify-content: space-between;
     margin-bottom: 10px;
     font-size: 18px;
-    color: #666;
+    color: #000000;
 }
 
 .modal {
@@ -151,7 +163,7 @@ nav a:hover {
 }
 
 .modal-content {
-    background-color: #fefefe;
+    background-color: #82b014;
     margin: 5% auto;
     padding: 20px;
     border: 1px solid #888;
@@ -178,7 +190,7 @@ nav a:hover {
 }
 
 .profile-section h2 {
-    color: #453F78;
+    color: #82b014;
     margin-bottom: 15px;
     font-weight: 500;
 }
@@ -186,5 +198,28 @@ nav a:hover {
 .chart-container {
     width: 100%;
     height: 400px;
-    margin-top: 20px;
+    margin-top: 0px;
+}
+
+.table-container {
+    margin-top: -400px;
+    background-color: #21222241;
+    border-radius: 5px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table th,
+table td {
+    border: 3px solid #82b014;
+    padding: 8px;
+    text-align: left;
+    color: #ffffff;
+}
+
+table th {
+    background-color: #82b014;
 }

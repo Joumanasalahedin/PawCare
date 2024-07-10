@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin, Group, Permission
 from django.db import models
+from django.apps import apps
 
 
 class PetOwnerManager(BaseUserManager):
@@ -15,7 +16,6 @@ class PetOwnerManager(BaseUserManager):
 class PetOwner(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(max_length=150, unique=True, null=False)
     name = models.CharField(max_length=100)
-    state = models.CharField(max_length=200, null=True)
     city = models.CharField(max_length=200, null=True)
     street = models.CharField(max_length=200, null=True)
     phone_number = models.CharField(max_length=15, null=True)
@@ -33,6 +33,26 @@ class PetOwner(AbstractBaseUser, PermissionsMixin):
 
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['name']
+
+    def __str__(self):
+        return self.name
+
+
+class Pet(models.Model):
+    owner = models.ForeignKey(
+        PetOwner, on_delete=models.CASCADE, related_name='pets')
+    vet = models.ForeignKey('vets.Vet', on_delete=models.CASCADE,
+                            null=True, related_name='pets')
+    name = models.CharField(max_length=100, null=False)
+    breed = models.CharField(max_length=100, null=False, blank=True)
+    age = models.IntegerField()
+    gender = models.CharField(max_length=10, choices=[
+                              ('male', 'Male'), ('female', 'Female')])
+    weight = models.FloatField(null=True, blank=True)
+    vaccinations = models.TextField(null=True, blank=True)
+    medical_notes = models.TextField(null=True, blank=True)
+    previous_reports = models.TextField(null=True, blank=True)
+    additional_comments = models.TextField(null=True, blank=True)
 
     def __str__(self):
         return self.name

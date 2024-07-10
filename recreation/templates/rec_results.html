@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recreational Activities Search Results</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/rec_results.css' %}">
+</head>
+
+<body>
+    <header>
+        <div class="logo">Pawcare</div>
+        <h1 id="head"></h1>
+        <nav>
+            <a href="{%url 'recreation:rec_search' %}">Back to Search</a>
+            <a href="{%url 'home' %}">Home</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1>Recreational Locations</h1>
+        <div class="appointment-cards">
+            {% if results %}
+            {% for recreation in results %}
+            <div class="card">
+                <div class="clinic-name"><strong>{{ recreation.name }}</strong></div>
+                <div class="clinic-name">{{ recreation.get_category_display }}</div>
+                <div class="clinic-address">{{ recreation.street }}, {{ recreation.city }}</div>
+                <div class="clinic-state">{{ recreation.PLZ }}, {{ recreation.state }}</div>
+                {% if recreation.email %}
+                <div class="clinic-phone">{{ recreation.phone_number }}</div>
+                {% endif %}
+                {% if recreation.email %}
+                <div class="clinic-email">{{ recreation.email }}</div>
+                {% endif %}
+            </div>
+            {% endfor %}
+            {% else %}
+            <p>No places found.</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+
+</html>

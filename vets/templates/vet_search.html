@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pawcare</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Forum&display=swap" rel="stylesheet">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/vet_search.css' %}">
+    <style>
+
+    </style>
+</head>
+
+<body class="fadeIn">
+    <div class="background"></div>
+    <div class="logo">Pawcare</div>
+    <nav>
+        <a href="{% url 'pet_owners:register'%}">Pet Login/Register</a>
+        <a href="{% url 'home'%}">Home</a>
+    </nav>
+    <h1 id="head">Search for vets near You</h1>
+    <div class="s01">
+        <form action="{% url 'vets:vet_results' %}" method="get">
+            <div class="inner-form">
+                <div class="input-field second-wrap">
+                    <input id="location" type="text" placeholder="Location" name="location">
+                </div>
+                <div class="input-field third-wrap">
+                    <button class="btn-search" type="submit">Search</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="cta-container">
+        <p>Are You a Veterinarian? We've made it easier for you too!</p>
+        <a href="{% url 'vets:register'%}" class="cta-button">Get Started with Pawcare</a>
+    </div>
+</body>
+
+</html>

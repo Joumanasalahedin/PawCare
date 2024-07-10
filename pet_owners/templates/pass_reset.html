@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pawcare - Password Reset</title>
+    <link rel="stylesheet" href="{% static 'css/pass_reset.css' %}">
+</head>
+
+<body>
+    <header>
+        <div class="logo">Pawcare</div>
+        <h1 id="head"></h1>
+        <nav>
+            <a href="{% url 'home' %}">Home</a>
+        </nav>
+    </header>
+    <div class="container">
+        <h2>Password Reset</h2>
+        <form action="/reset-password" method="POST">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" required>
+            <button type="submit">Send Reset Link</button>
+        </form>
+    </div>
+</body>
+
+</html>

@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin, Group, Permission
 from django.db import models
+from pet_owners.models import Pet
 
 
 class VetManager(BaseUserManager):
@@ -38,3 +39,17 @@ class Vet(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.name
+
+
+class Appointments(models.Model):
+    pet = models.ForeignKey(Pet, on_delete=models.CASCADE,
+                            null=True, related_name='pet_appointments')
+    vet = models.ForeignKey(Vet, on_delete=models.CASCADE,
+                            related_name='vet_appointments')
+    date = models.DateField()
+    time = models.TimeField()
+    complaints = models.TextField(null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Appointment with {self.vet.name} for {self.pet.name} on {self.date} at {self.time}"
