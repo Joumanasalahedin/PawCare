@@ -25,7 +25,6 @@ urlpatterns = [
     path('', home, name='home'),
     path('vets/', include('vets.urls')),
     path('pet_owners/', include('pet_owners.urls')),
-    path('appointments/', include('appointments.urls')),
     path('recreation/', include('recreation.urls'))
 ]
 

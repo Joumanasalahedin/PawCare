@@ -1,6 +1,6 @@
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin, Group, Permission
 from django.db import models
-from vets.models import Vet
+from django.apps import apps
 
 
 class PetOwnerManager(BaseUserManager):
@@ -16,7 +16,6 @@ class PetOwnerManager(BaseUserManager):
 class PetOwner(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(max_length=150, unique=True, null=False)
     name = models.CharField(max_length=100)
-    state = models.CharField(max_length=200, null=True)
     city = models.CharField(max_length=200, null=True)
     street = models.CharField(max_length=200, null=True)
     phone_number = models.CharField(max_length=15, null=True)
@@ -42,7 +41,7 @@ class PetOwner(AbstractBaseUser, PermissionsMixin):
 class Pet(models.Model):
     owner = models.ForeignKey(
         PetOwner, on_delete=models.CASCADE, related_name='pets')
-    vet = models.ForeignKey(Vet, on_delete=models.CASCADE,
+    vet = models.ForeignKey('vets.Vet', on_delete=models.CASCADE,
                             null=True, related_name='pets')
     name = models.CharField(max_length=100, null=False)
     breed = models.CharField(max_length=100, null=False, blank=True)

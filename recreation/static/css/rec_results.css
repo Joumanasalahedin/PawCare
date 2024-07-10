@@ -1,9 +1,9 @@
 body {
-    background: url("../images/app.png");
-    background-size: 100%;
+    background: url("../images/search.jpg");
+    background-size: 95%;
     background-position: center no-repeat;
     color: #000000;
-    font-family: 'HELVETICA', sans-serif;
+    font-family: 'Helvetica', sans-serif;
     margin: 0;
     padding: 0;
 }
@@ -56,14 +56,13 @@ h1 {
 }
 
 .card {
-    background-color: #f9f9f9;
+    background-color: #f9f9f981;
     padding: 15px;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     flex: 1 1 300px;
-    /* Flexbox properties for card width */
     max-width: calc(50% - 20px);
-    /* 50% width with gap between cards */
+    position: relative;
 }
 
 .card h2 {
@@ -77,22 +76,14 @@ h1 {
     color: #666;
 }
 
-.card button {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.card button:hover {
-    background-color: #45a049;
+.warning-card {
+    background-color: #ffcccb;
+    color: #333;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+    font-size: 14px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .results-container {

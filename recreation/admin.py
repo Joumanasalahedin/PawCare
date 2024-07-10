@@ -5,5 +5,5 @@ from .models import Recreation
 
 @admin.register(Recreation)
 class RecreationAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'category', 'address', 'phone_number')
-    search_fields = ('name', 'category', 'address')
+    list_display = ('id', 'name', 'category', 'city', 'phone_number')
+    search_fields = ('name', 'category', 'city')

@@ -15,12 +15,13 @@
         <div class="logo">Pawcare</div>
         <h1 id="head"></h1>
         <nav>
+            <a href="{% url 'vets:vet_search'%}">Back to Search</a>
             <a href="{%url 'home' %}">Home</a>
         </nav>
     </header>
 
     <div class="container">
-        <h1>Appointment Scheduler</h1>
+        <h1>Vet Finder</h1>
         <div class="appointment-cards">
             {% if results %}
             {% for vet in results %}
