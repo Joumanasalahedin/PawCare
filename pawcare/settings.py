@@ -57,6 +57,8 @@ MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
+CSRF_TRUSTED_ORIGINS = ['https://pawcare.azurewebsites.net']
+
 ROOT_URLCONF = 'pawcare.urls'
 
 TEMPLATES = [
