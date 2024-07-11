@@ -44,17 +44,8 @@ INSTALLED_APPS = [
     'vets',
     'pet_owners',
     'recreation',
-    'storages',
 ]
 
-AZURE_ACCOUNT_NAME = 'pawcare'
-AZURE_ACCOUNT_KEY = os.getenv('MEDIA_KEY')
-AZURE_CONTAINER = 'media'
-
-DEFAULT_FILE_STORAGE = 'storages.backends.azure_storage.AzureStorage'
-AZURE_CUSTOM_DOMAIN = f'pawcare.blob.core.windows.net'
-
-MEDIA_URL = f'https://pawcare.blob.core.windows.net/media/'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
