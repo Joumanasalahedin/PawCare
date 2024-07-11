@@ -18,7 +18,6 @@
         </nav>
         <section>
             <div class="video">
-                <!-- <img src="{% static 'images/bg4.jpg' %}"> -->
             </div>
         </section>
     </header>
@@ -43,9 +42,6 @@
         {% endif %}
         <form method="post" action="{% url 'pet_owners:user_dashboard' owner.id %}">
             {% csrf_token %}
-            <label for="owner">Owner</label>
-            <input type="number" id="owner" name="owner" required>
-
             <label for="name">Pet Name</label>
             <input type="text" id="name" name="name" required>
 
