@@ -79,15 +79,16 @@ WSGI_APPLICATION = 'pawcare.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-
+conn_str = os.environ['AZURE_POSTGRESQL_CONNECTIONSTRING']
+conn_str_params = {pair.split('=')[0]: pair.split('=')[1] for pair in conn_str.split(' ')}
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('POSTGRES_DB'),
-        'USER': os.getenv('POSTGRES_USER'),
-        'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
-        'HOST': os.getenv('POSTGRES_HOST'),
-        'PORT': '',
+        'NAME': conn_str_params['dbname'],
+        'USER': conn_str_params['user'],
+        'PASSWORD': conn_str_params['password'],
+        'HOST': conn_str_params['host'],
+        'PORT': conn_str_params['port'],
     }
 }
 
