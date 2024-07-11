@@ -48,7 +48,7 @@ INSTALLED_APPS = [
 ]
 
 AZURE_ACCOUNT_NAME = 'pawcare'
-AZURE_ACCOUNT_KEY = 'xH6nXOBuJ9tyoekhIAc3P04jHHctacTHlf2yQhqxDgFzmKKEPWe4x/907g+FtjFXG6phyu7jp6Gv+AStnJ0xrg=='
+AZURE_ACCOUNT_KEY = os.getenv('MEDIA_KEY')
 AZURE_CONTAINER = 'media'
 
 DEFAULT_FILE_STORAGE = 'storages.backends.azure_storage.AzureStorage'
