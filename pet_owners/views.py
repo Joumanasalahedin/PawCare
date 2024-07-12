@@ -68,6 +68,3 @@ def user_dashboard(request, owner_id):
 
     return render(request, 'user_dashboard.html', {'form': form, 'pets': pets, 'owner': owner})
 
-
-def password_reset(request):
-    return render(request, 'pass_reset.html')
