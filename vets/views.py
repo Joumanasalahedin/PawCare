@@ -46,10 +46,6 @@ def login_vet(request):
     return render(request, 'drl.html', {'login_form': form, 'form': VetCreationForm()})
 
 
-def password_reset(request):
-    return render(request, 'pass_reset.html')
-
-
 @login_required
 def doctor_dashboard(request, vet_id):
     vet = Vet.objects.get(id=vet_id)
